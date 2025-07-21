@@ -1,75 +1,194 @@
 # 🏁 Tugas Akhir (TA) - Final Project
 
-**Nama Mahasiswa**: [Nama Lengkap]  
-**NRP**: [Nomor Registrasi Pokok]  
-**Judul TA**: [Judul Tugas Akhir]  
-**Dosen Pembimbing**: [Nama Dosen]  
-**Dosen Ko-pembimbing**: [Nama Dosen]
+**Nama Mahasiswa**: Apta Rasendriya Wijaya  
+**NRP**: 5025211139  
+**Judul TA**: Pelatihan Kontinu Model Deteksi Intrusi Berbasis Jaringan Menggunakan Recurrent Neural Network (RNN)  
+**Dosen Pembimbing**: Baskoro Adi Pratomo, S.Kom., M.Kom, PhD.   
+**Dosen Ko-pembimbing**: Hudan Studiawan, S.Kom., M.Kom, PhD. 
 
 ---
 
 ## 📺 Demo Aplikasi  
-Embed video demo di bawah ini (ganti `VIDEO_ID` dengan ID video YouTube Anda):  
-
-[![Demo Aplikasi](https://i.ytimg.com/vi/zIfRMTxRaIs/maxresdefault.jpg)](https://www.youtube.com/watch?v=VIDEO_ID)  
+[![Demo Aplikasi]()](https://www.youtube.com)  
 *Klik gambar di atas untuk menonton demo*
 
 ---
 
-*Konten selanjutnya hanya merupakan contoh awalan yang baik. Anda dapat berimprovisasi bila diperlukan.*
-
 ## 🛠 Panduan Instalasi & Menjalankan Software  
 
 ### Prasyarat  
-- Daftar dependensi (contoh):
-  - Python 3.10+
-  - Node.js v18+
-  - MySQL 8.0
-  - [Lainnya...]
+- 🐍 Versi Python:  
+  - Disarankan menggunakan **Python 3.9.x**  
+    > ⚠️ Beberapa library mungkin tidak kompatibel dengan Python versi 3.10 ke atas.
+- 📦 Library & Dependensi  
+   Semua dependensi didefinisikan di file `requirements.txt`.
 
 ### Langkah-langkah  
 1. **Clone Repository**  
    ```bash
-   git clone https://github.com/Informatics-ITS/TA.git
+   git clone https://github.com/Informatics-ITS/ta-aptarr.git
    ```
-2. **Instalasi Dependensi**
-   ```bash
-   cd [folder-proyek]
-   pip install -r requirements.txt  # Contoh untuk Python
-   npm install  # Contoh untuk Node.js
-   ```
-3. **Konfigurasi**
-- Salin/rename file .env.example menjadi .env
-- Isi variabel lingkungan sesuai kebutuhan (database, API key, dll.)
-4. **Jalankan Aplikasi**
-   ```bash
-   python main.py  # Contoh untuk Python
-   npm start      # Contoh untuk Node.js
-   ```
-5. Buka browser dan kunjungi: `http://localhost:3000` (sesuaikan dengan port proyek Anda)
 
+2. **Instalasi Dependensi**  
+   Agar library Python yang ada di perangkat tidak tercampur dengan library aplikasi ini, disarankan menggunakan virtual environment (env).
+
+   ```bash
+   cd ta-aptarr
+   python3 -m venv myenv
+   ```
+
+   Untuk mengaktifkan env:
+
+   - **Linux/Mac:**
+
+   ```bash
+   source myenv/bin/activate
+   ```
+
+   - **Windows:**
+
+   ```bash
+   myenv\Scripts\activate
+   ```
+
+   Untuk menonaktifkan env, cukup jalankan:
+
+   ```bash
+   deactivate
+   ```
+
+   Setelah env aktif, instal semua dependensi dengan:
+
+   ```bash
+   pip install -r requirement.txt
+   ```
+
+   Atau Anda dapat menginstal library satu per satu saat menjalankan kode, jika muncul error terkait library yang belum ada.
+
+   ## ⚠️ Saran:
+   Jika Anda menggunakan **Windows**, disarankan **menonaktifkan sementara Windows Defender** saat proses instalasi library.  
+   Beberapa library (terutama yang berbasis C atau mengakses sistem) terkadang **salah terdeteksi sebagai malware**, yang dapat menyebabkan instalasi gagal.
+
+3. **Jalankan Aplikasi**  
+   **a. Converting Data**
+   ```python
+   python3 converting.py [mode] [protokol] [port] [panjang-n-gram] [file-pcap]
+   ```
+   Penjelasan Argumen:
+
+   - **[mode]:** Tentukan apakah data yang akan dikonversi untuk training atau testing. Pilih training untuk data pelatihan dan testing untuk data pengujian.
+
+   - **[protokol]:** Jenis protokol jaringan yang digunakan, seperti tcp, udp, dll.
+
+   - **[port]:** Port yang digunakan untuk komunikasi, misalnya 21 untuk FTP.
+
+   - **[panjang-n-gram]:** Panjang n-gram kata yang digunakan dalam analisis. Contoh: 5 untuk n-gram berukuran 5.
+
+   - **[file-pcap]:** Lokasi file pcap yang akan dikonversi. 
+
+   Contoh:
+   ```python
+   python3 converting.py training tcp 80 5 "CIC-IDS-2017_Dataset/Tuesday-WorkingHours.pcap"
+   ```
+   **b. Training Model** 
+   ```python
+   python3 rnnids-vectorizer.py training [model] [protokol] [port] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [batch-size]
+   ```
+   Penjelasan Argumen:
+
+   - **[model]:** Jenis model yang digunakan untuk training, seperti lstm, gru, dll.
+
+   - **[protokol]:** Jenis protokol yang digunakan, misalnya tcp.
+
+   - **[port]:** Port yang digunakan, seperti 21.
+
+   - **[panjang-n-gram]:** Panjang n-gram untuk fitur yang digunakan dalam model.
+
+   - **[dropout]:** Tingkat dropout untuk regularisasi, misalnya 0.2.
+
+   - **[jumlah-kamus]:** Ukuran kamus yang digunakan dalam model.
+
+   - **[nama-model]:** Nama untuk model yang disimpan setelah proses training.
+
+   - **[batch-size]:** Jumlah data yang diproses dalam setiap iterasi (epoch), misalnya 128.
+
+   Contoh:
+   ```python
+   python3 rnnids-vectorizer.py training lstm tcp 80 2 5 0.2 1500 Tuesday-WorkingHours_training_80 128
+   ```
+   c. Testing Model 
+   ```python
+   python3 rnnids-vectorizer.py testing [model] [protokol] [port] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [file-testing]
+   ```
+   Penjelasan Argumen:
+
+   - **[model]:** Jenis model yang digunakan untuk pengujian, seperti lstm.
+
+   - **[protokol]:** Jenis protokol yang digunakan, misalnya tcp.
+
+   - **[port]:** Port yang digunakan untuk komunikasi, seperti 21.
+
+   - **[panjang-n-gram]:** Panjang n-gram yang digunakan dalam pengujian.
+
+   - **[dropout]:** Tingkat dropout yang digunakan untuk pengujian model.
+
+   - **[jumlah-kamus]:** Jumlah kamus yang digunakan dalam model.
+
+   - **[nama-model]:** Nama model yang akan diuji.
+
+   - **[file-testing]:** File dataset (dalam format .txt) yang digunakan untuk pengujian.
+
+   Contoh:
+   ```python
+   python3 rnnids-vectorizer.py testing lstm tcp 80 2 5 0.2 1500 Tuesday-WorkingHours_training_80 Monday-WorkingHours_testing_80
+   ```
+   d. Retraining Model 
+   ```python
+   python3 rnnids-vectorizer-test.py retraining [model] [protokol] [port] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [file-testing]
+   ```
+   Penjelasan Argumen:
+
+   - **[model]:** Jenis model yang digunakan untuk retraining, misalnya lstm.
+
+   - **[protokol]:** Jenis protokol yang digunakan, seperti tcp.
+
+   - **[port]:** Port yang digunakan, seperti 21.
+
+   - **[panjang-n-gram]:** Panjang n-gram yang digunakan dalam retraining.
+
+   - **[dropout]:** Tingkat dropout yang digunakan dalam retraining.
+
+   - **[jumlah-kamus]:** Jumlah kamus yang digunakan untuk retraining.
+
+   - **[nama-model]:** Nama model yang akan diretrain.
+
+   - **[file-testing]:** File dataset testing (dalam format .txt) yang digunakan untuk retraining.
+
+   Keterangan:  
+
+   Perintah retraining hampir sama dengan testing, namun berbeda pada argumen pertama yang menggunakan retraining. Setelah proses training dan testing selesai, program akan menghitung pergeseran data anomaly antara training dan testing untuk memperbarui model.  
+
+
+   Contoh:
+   ```python
+   python3 rnnids-vectorizer-test.py retraining lstm tcp 21 2 2 0.2 3500 part_1_Treatment_training_21 part_2_Treatment_testing_21
+   ```
 ---
 
-## 📚 Dokumentasi Tambahan
+## ➕ Tambahan
 
-- [![Dokumentasi API]](docs/api.md)
-- [![Diagram Arsitektur]](docs/architecture.png)
-- [![Struktur Basis Data]](docs/database_schema.sql)
+### 📊 Dataset yang Digunakan  
+Dataset yang digunakan dalam tugas akhir ini adalah:  
+- [![Dataset]()](https://www.youtube.com)  
 
----
-
-## ✅ Validasi
-
-Pastikan proyek memenuhi kriteria berikut sebelum submit:
-- Source code dapat di-build/run tanpa error
-- Video demo jelas menampilkan fitur utama
-- README lengkap dan terupdate
-- Tidak ada data sensitif (password, API key) yang ter-expose
+### 🤖 Model yang Digunakan  
+Model machine learning yang digunakan:  
+- [![Model]()](https://www.youtube.com)  
 
 ---
 
 ## ⁉️ Pertanyaan?
 
 Hubungi:
-- Penulis: [email@mahasiswa]
-- Pembimbing Utama: [email@pembimbing]
+- Penulis: apta.rasendriya@gmail.com
+- Pembimbing Utama: baskoro@if.its.ac.id
