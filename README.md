@@ -9,8 +9,13 @@
 ---
 
 ## 📺 Demo Aplikasi  
-[![Demo Aplikasi]()](https://www.youtube.com)  
+
+<a href="https://www.youtube.com">
+  <img src="https://github.com/user-attachments/assets/af4a37d3-39c5-417b-80aa-849bfcedc266" alt="Demo Aplikasi" width="800" />
+</a>
+
 *Klik gambar di atas untuk menonton demo*
+
 
 ---
 
@@ -92,7 +97,7 @@
    ```
    **b. Training Model** 
    ```python
-   python3 rnnids-vectorizer.py training [model] [protokol] [port] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [batch-size]
+   python3 rnnids-vectorizer.py training [model] [protokol] [port] [hidden-layer] [panjang-n-gram] [dropout] [jumlah-kamus] [file-traning] [batch-size]
    ```
    Penjelasan Argumen:
 
@@ -101,6 +106,8 @@
    - **[protokol]:** Jenis protokol yang digunakan, misalnya tcp.
 
    - **[port]:** Port yang digunakan, seperti 21.
+     
+   - **[hidden-layer]:** Jumlah unit atau lapisan tersembunyi (hidden layers) dalam model. Contoh: 2.
 
    - **[panjang-n-gram]:** Panjang n-gram untuk fitur yang digunakan dalam model.
 
@@ -108,7 +115,7 @@
 
    - **[jumlah-kamus]:** Ukuran kamus yang digunakan dalam model.
 
-   - **[nama-model]:** Nama untuk model yang disimpan setelah proses training.
+   - **[file-traning]:** File dataset (dalam format .txt) yang digunakan untuk pelatihan.
 
    - **[batch-size]:** Jumlah data yang diproses dalam setiap iterasi (epoch), misalnya 128.
 
@@ -116,9 +123,9 @@
    ```python
    python3 rnnids-vectorizer.py training lstm tcp 80 2 5 0.2 1500 Tuesday-WorkingHours_training_80 128
    ```
-   c. Testing Model 
+   **c. Testing Model**
    ```python
-   python3 rnnids-vectorizer.py testing [model] [protokol] [port] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [file-testing]
+   python3 rnnids-vectorizer.py testing [model] [protokol] [port] [hidden-layer] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [file-testing]
    ```
    Penjelasan Argumen:
 
@@ -127,8 +134,10 @@
    - **[protokol]:** Jenis protokol yang digunakan, misalnya tcp.
 
    - **[port]:** Port yang digunakan untuk komunikasi, seperti 21.
+     
+   - **[hidden-layer]:** Jumlah unit atau lapisan tersembunyi (hidden layers) dalam model. Contoh: 2.
 
-   - **[panjang-n-gram]:** Panjang n-gram yang digunakan dalam pengujian.
+   - **[panjang-n-gram]:** Panjang n-gram untuk fitur yang digunakan dalam model.
 
    - **[dropout]:** Tingkat dropout yang digunakan untuk pengujian model.
 
@@ -142,9 +151,9 @@
    ```python
    python3 rnnids-vectorizer.py testing lstm tcp 80 2 5 0.2 1500 Tuesday-WorkingHours_training_80 Monday-WorkingHours_testing_80
    ```
-   d. Retraining Model 
+   **d. Retraining Model**
    ```python
-   python3 rnnids-vectorizer-test.py retraining [model] [protokol] [port] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [file-testing]
+   python3 rnnids-vectorizer-test.py retraining [model] [protokol] [port] [hidden-layer] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [file-testing]
    ```
    Penjelasan Argumen:
 
@@ -153,8 +162,10 @@
    - **[protokol]:** Jenis protokol yang digunakan, seperti tcp.
 
    - **[port]:** Port yang digunakan, seperti 21.
+     
+   - **[hidden-layer]:** Jumlah unit atau lapisan tersembunyi (hidden layers) dalam model. Contoh: 2.
 
-   - **[panjang-n-gram]:** Panjang n-gram yang digunakan dalam retraining.
+   - **[panjang-n-gram]:** Panjang n-gram untuk fitur yang digunakan dalam model.
 
    - **[dropout]:** Tingkat dropout yang digunakan dalam retraining.
 
@@ -179,11 +190,11 @@
 
 ### 📊 Dataset yang Digunakan  
 Dataset yang digunakan dalam tugas akhir ini adalah:  
-- [![Dataset]()](https://www.youtube.com)  
+- [Download Dataset](https://itsacid-my.sharepoint.com/:u:/g/personal/baskoro_its_ac_id/EVAOAuxs67JGkf0y6lRD2bIB4_kVB1dPjoDFJM2QtT66cA?e=Ec7HWj)
 
 ### 🤖 Model yang Digunakan  
-Model machine learning yang digunakan:  
-- [![Model]()](https://www.youtube.com)  
+Model machine learning export yang digunakan:  
+- [Download Model](https://itsacid-my.sharepoint.com/:u:/g/personal/baskoro_its_ac_id/Ed8kj9bit5hBvxTDU3YtAMgBERYmEI9JiNZxWRyKGOc8hg?e=grjbmz)
 
 ---
 
