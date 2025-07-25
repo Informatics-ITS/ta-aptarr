@@ -10,7 +10,7 @@
 
 ## 📺 Demo Aplikasi  
 
-<a href="https://www.youtube.com">
+<a href="https://youtu.be/_pCb_-ZeSdE">
   <img src="https://github.com/user-attachments/assets/af4a37d3-39c5-417b-80aa-849bfcedc266" alt="Demo Aplikasi" width="800" />
 </a>
 
