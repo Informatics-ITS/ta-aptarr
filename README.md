@@ -85,7 +85,7 @@
 
    - **[protokol]:** Jenis protokol jaringan yang digunakan, seperti tcp, udp, dll.
 
-   - **[port]:** Port yang digunakan untuk komunikasi, misalnya 21 untuk FTP.
+   - **[port]:** Port yang digunakan, misalnya 21 untuk FTP, 80 untuk HTTP dan lain-lain.
 
    - **[panjang-n-gram]:** Panjang n-gram kata yang digunakan dalam analisis. Contoh: 5 untuk n-gram berukuran 5.
 
@@ -105,7 +105,7 @@
 
    - **[protokol]:** Jenis protokol yang digunakan, misalnya tcp.
 
-   - **[port]:** Port yang digunakan, seperti 21.
+   - **[port]:** Port yang digunakan, seperti 21 untuk FTP, 80 untuk HTTP dan lain-lain.
      
    - **[hidden-layer]:** Jumlah unit atau lapisan tersembunyi (hidden layers) dalam model. Contoh: 2.
 
@@ -133,7 +133,7 @@
 
    - **[protokol]:** Jenis protokol yang digunakan, misalnya tcp.
 
-   - **[port]:** Port yang digunakan untuk komunikasi, seperti 21.
+   - **[port]:** Port yang digunakan, seperti 21 untuk FTP, 80 untuk HTTP dan lain-lain.
      
    - **[hidden-layer]:** Jumlah unit atau lapisan tersembunyi (hidden layers) dalam model. Contoh: 2.
 
@@ -153,7 +153,7 @@
    ```
    **d. Retraining Model**
    ```python
-   python3 rnnids-vectorizer-test.py retraining [model] [protokol] [port] [hidden-layer] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [file-testing]
+   python3 rnnids-retraining.py retraining [model] [protokol] [port] [hidden-layer] [panjang-n-gram] [dropout] [jumlah-kamus] [nama-model] [file-testing]
    ```
    Penjelasan Argumen:
 
@@ -161,7 +161,7 @@
 
    - **[protokol]:** Jenis protokol yang digunakan, seperti tcp.
 
-   - **[port]:** Port yang digunakan, seperti 21.
+   - **[port]:** Port yang digunakan, seperti 21 untuk FTP, 80 untuk HTTP dan lain-lain.
      
    - **[hidden-layer]:** Jumlah unit atau lapisan tersembunyi (hidden layers) dalam model. Contoh: 2.
 
@@ -182,7 +182,7 @@
 
    Contoh:
    ```python
-   python3 rnnids-vectorizer-test.py retraining lstm tcp 21 2 2 0.2 3500 part_1_Treatment_training_21 part_2_Treatment_testing_21
+   python3 rnnids-retraining.py retraining lstm tcp 21 2 2 0.2 3500 part_1_Treatment_training_21 part_2_Treatment_testing_21
    ```
 ---
 
